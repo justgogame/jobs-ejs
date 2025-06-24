@@ -1,11 +1,11 @@
 const Job = require('../models/Job');
 
-exports.listJobs = async (req, res) => {
+exports.getAllJobs = async (req, res) => {
   const jobs = await Job.find({ createdBy: req.user._id });
   res.render('jobs', { jobs });
 };
 
-exports.showCreateForm = (req, res) => {
+exports.getNewJobForm = (req, res) => {
   res.render('job', { job: null });
 };
 
@@ -15,7 +15,7 @@ exports.createJob = async (req, res) => {
   res.redirect('/jobs');
 };
 
-exports.showEditForm = async (req, res) => {
+exports.getEditJobForm = async (req, res) => {
   const job = await Job.findOne({
     _id: req.params.id,
     createdBy: req.user._id
