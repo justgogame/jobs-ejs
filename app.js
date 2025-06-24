@@ -1,3 +1,5 @@
+require('dotenv').config(); // to load the .env file into the process.env object
+
 const express = require('express');
 require('express-async-errors');
 const session = require('express-session');
@@ -28,8 +30,6 @@ const store = new MongoDBStore({
 store.on('error', function (error) {
   console.log(error);
 });
-
-require('dotenv').config(); // to load the .env file into the process.env object
 
 const sessionParms = {
   secret: process.env.SESSION_SECRET,
